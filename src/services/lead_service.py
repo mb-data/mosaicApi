@@ -48,3 +48,18 @@ def get(id):
         error = str(err.__dict__['orig'])
         json_abort(500, error)
 
+
+def getall():
+    try:
+        lead = Lead.query.all()
+
+        if not lead:
+            json_abort(400,"Lead not found")
+        else:
+            return lead
+
+    except SQLAlchemyError as err: 
+        db.session.rollback()
+        error = str(err.__dict__['orig'])
+        json_abort(500, error)
+
