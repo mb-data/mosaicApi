@@ -7,16 +7,16 @@ from src.config.settings import config_by_name
 from src.models import db
 #import blueprint controllers
 from src.api.lead_controller import ns as lead_namespace
+from flask_cors import CORS
 
-
-   
     
 def create_app(config_name):
     #inicia flask
     app = Flask(__name__)
     #inicia configuracao variaveis de ambiente
     app.config.from_object(config_by_name[config_name])
-
+    app.config['CORS_HEADERS'] = 'Content-Type'
+    cors = CORS(app)
     setup_app(app)
 
     return app
