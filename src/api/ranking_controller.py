@@ -1,0 +1,27 @@
+from flask import request
+from flask_restplus import Resource
+from src.config.restplus import api
+from src.api.serializers.ranking_serializer import ranking_result, ranking_request
+from src.services.ranking_service import create, getall
+ 
+
+ns = api.namespace('api/ranking', description='Operations related to lead')
+
+ 
+@ns.route('')
+class RankingCollection(Resource):
+    @api.expect(ranking_request)
+    @api.marshal_with(ranking_result)
+    def post(self):
+        """
+        Create a new Lead
+        """ 
+        lead = create(request.json)
+        return lead 
+
+    @api.marshal_with(ranking_result)#define resultado da metodo 
+    def get(self):
+        lead_list = getall()
+        return lead_list
+ 
+

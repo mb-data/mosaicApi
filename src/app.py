@@ -7,6 +7,7 @@ from src.config.settings import config_by_name
 from src.models import db
 #import blueprint controllers
 from src.api.lead_controller import ns as lead_namespace
+from src.api.ranking_controller import ns as ranking_namespace
 from flask_cors import CORS
     
 def create_app(config_name):
@@ -43,6 +44,7 @@ def setup_app(app):
     init_config(app)
     #adiciona namespaces to blueprint
     api.add_namespace(lead_namespace) 
+    api.add_namespace(ranking_namespace) 
 
     #registra blueprint
     app.register_blueprint(blueprint, url_prefix='')
