@@ -16,12 +16,12 @@ class RankingCollection(Resource):
         """
         Create a new Lead
         """ 
-        lead = create(request.json)
-        return lead 
+        ranking = create(request.json)
+        return ranking 
 
     @api.marshal_with(ranking_result)#define resultado da metodo 
     def get(self):
-        lead_list = getall()
-        return lead_list
+        ranking_list = getall()
+        return ranking_list
  
 

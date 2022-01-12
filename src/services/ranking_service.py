@@ -3,7 +3,7 @@ from src.models.ranking import Ranking
 from src.config.restplus import  json_abort
 from sqlalchemy.exc import SQLAlchemyError 
 
-### LEAD SERVICE
+### RANKING SERVICE
 ### gerenciar as regras de negocio e CRUD do author
 ###
 
@@ -19,22 +19,22 @@ def create(data):
             json_abort(400,"email is required")
 
         phone = data.get('phone')
-        if not email:
+        if not phone:
             json_abort(400,"phone is required")
  
         points = data.get('points')
         if not points:
-            json_abort(400,"phone is required")
+            json_abort(400,"points is required")
 
         year = data.get('year')
         if not year:
-            json_abort(400,"phone is required")
+            json_abort(400,"year is required")
 
         month = data.get('month')
         if not month:
-            json_abort(400,"phone is required")
+            json_abort(400,"month is required")
 
-        ranking = Ranking(name=name,email=email, phone=phone)
+        ranking = Ranking(name=name,email=email, phone=phone, points=points, year=year, month=month)
         db.session.add(ranking)
         db.session.commit()
 
