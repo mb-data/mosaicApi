@@ -19,10 +19,14 @@ def create(data):
             json_abort(400,"email is required")
 
         phone = data.get('phone')
-        if not email:
+        if not phone:
             json_abort(400,"phone is required")
  
-        lead = Lead(name=name,email=email, phone=phone)
+        insta = data.get('insta')
+        if not insta:
+            json_abort(400,"insta is required")
+
+        lead = Lead(name=name,email=email, phone=phone, insta=insta)
         db.session.add(lead)
         db.session.commit()
 
